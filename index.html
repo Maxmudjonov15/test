@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM BREACHED - CRITICAL WARNING</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #080000;
+            color: #ff0000;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            animation: bgPulse 1s infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { background-color: #120000; }
+            100% { background-color: #2b0000; }
+        }
+
+        .container {
+            border: 3px solid #ff0000;
+            background-color: #000000;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .skull {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: shake 0.2s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            50% { transform: translate(-1px, -2px) rotate(-1deg); }
+            100% { transform: translate(1px, -1px) rotate(1deg); }
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .logs {
+            background-color: #0a0000;
+            border: 1px dashed #ff0000;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            text-align: left;
+            font-size: 13px;
+            color: #ff4d4d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .timer-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            background: #ff000033;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ff0000;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .warning-text {
+            font-size: 14px;
+            color: #ff9999;
+            margin-bottom: 15px;
+        }
+
+        .fake-btn {
+            background: #ff0000;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .fake-btn:hover {
+            background: #cc0000;
+            color: #fff;
+            box-shadow: 0 0 15px #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="skull">⚠️ ☠️ ⚠️</div>
+        <h1>DIQQAT! TIZIMINGIZ BUZIB KIRILDI!</h1>
+        
+        <div class="warning-text">
+            Barcha shaxsiy ma'lumotlaringiz, fotosuratlar va parollaringiz xavfsiz serverga ko'chirildi!
+        </div>
+
+        <div class="logs" id="logBox">
+            > Kiber-hujum aniqlandi...<br>
+            > IP manzil qulflanmoqda...<br>
+        </div>
+
+        <div class="timer-box" id="timer">00:59</div>
+
+        <button class="fake-btn" onclick="triggerPanic()">TIZIMNI QUTQARISH</button>
+    </div>
+
+    <script>
+        const logs = document.getElementById('logBox');
+        const timerEl = document.getElementById('timer');
+        
+        const attackSteps = [
+            "> Firewall batamom o'chirildi...",
+            "> Kamera va mikrofon boshqaruvi qo'lga olindi...",
+            "> Barcha WhatsApp va Telegram xabarlari nusxalandi...",
+            "> Tizim fayllari shifrlanmoqda [████████--] 85%...",
+            "> DIQQAT: Orqaga qaytarib bo'lmaydigan jarayon boshlandi!"
+        ];
+
+        let step = 0;
+        const interval = setInterval(() => {
+            if (step < attackSteps.length) {
+                logs.innerHTML += attackSteps[step] + "<br>";
+                logs.scrollTop = logs.scrollHeight;
+                step++;
+            }
+        }, 1200);
+
+        // Orqaga sanash taymeri
+        let timeLeft = 59;
+        const countdown = setInterval(() => {
+            timeLeft--;
+            let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
+            timerEl.innerText = `00:${seconds}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerEl.innerText = "MA'LUMOTLAR O'CHIRILDI!";
+                timerEl.style.color = "#ffff00";
+            }
+        }, 1000);
+
+        function triggerPanic() {
+            alert("Xotirjam bo'ling! Bu shunchaki xavfsizlik simulyatsiyasi hazili edi! 😎");
+            location.reload();
+        }
+    </script>
+</body>
+</html>
